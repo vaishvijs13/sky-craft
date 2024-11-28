@@ -1,0 +1,3 @@
+[submodule "lol"]
+	path = lol
+	url = https://github.com/patel-haley/lol.git
