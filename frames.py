@@ -1,15 +1,7 @@
 import cv2
 import os
 
-def extract_frames(video_file, output_directory="frames", frame_rate=2):
-    """
-    Extract frames from a video at a specified frame rate.
-
-    Args:
-        video_file (str): Path to the video file.
-        output_directory (str): Directory to save the extracted frames.
-        frame_rate (int): Number of frames to extract per second.
-    """
+def extract_frames(video_file, output_directory="frames", frame_rate=4):
     os.makedirs(output_directory, exist_ok=True)
 
     cap = cv2.VideoCapture(video_file)
@@ -17,16 +9,18 @@ def extract_frames(video_file, output_directory="frames", frame_rate=2):
         print(f"Error: Unable to open video file {video_file}")
         return
 
+    # video frame rate (frames per second)
     video_fps = int(cap.get(cv2.CAP_PROP_FPS))
     frame_interval = int(video_fps / frame_rate)
 
     frame_count = 0
     extracted_count = 0
 
+    # loop through the video frames
     while True:
         ret, frame = cap.read()
 
-        if not ret:
+        if not ret: # when done
             break
 
         if frame_count % frame_interval == 0:
@@ -37,5 +31,13 @@ def extract_frames(video_file, output_directory="frames", frame_rate=2):
 
         frame_count += 1
 
+    # release captured object
     cap.release()
     print(f"Extraction complete. {extracted_count} frames saved to {output_directory}")
+
+
+video_file = "demo.mov"
+output_directory = "frames3"
+frame_rate = 4
+
+extract_frames(video_file, output_directory, frame_rate)
