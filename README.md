@@ -15,3 +15,5 @@ SkyCraft is an AI-powered drone system designed to assist first responders in as
 **Intuitive Web Application**
 * Renders 3D models on user-friendly React application.
 * Generates an AI summary from the drone-captured video for immediate insights.
+
+![image](https://github.com/user-attachments/assets/bdcbee54-cba0-419b-b34d-0c972915ba46)
