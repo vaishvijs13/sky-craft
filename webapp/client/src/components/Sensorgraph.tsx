@@ -39,8 +39,12 @@ const SensorGraph: React.FC = () => {
       const response = await fetch("http://<Raspberry-Pi-IP>:5000/data");
       const result = await response.json();
 
+      const runTime = result.timestamps.map((timestamp: string, index: number) => 
+        `T+${index * 2}s` // Data is collected every 2 seconds
+      );
+
       setChartData({
-        labels: result.labels, // Timestamps
+        labels: runTime, // Timestamps
         datasets: [
           {
             label: "Temperature (°C)",
@@ -72,6 +76,7 @@ const SensorGraph: React.FC = () => {
   return (
     <div style={{ textAlign: "center", margin: "20px" }}>
       <h2>DHT11 Sensor Data</h2>
+      <p>Flight Run Time is displayed on the x-axis.</p>
       <Line data={chartData} />
     </div>
   );
